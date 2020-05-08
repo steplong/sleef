@@ -1,7 +1,8 @@
 version: 1.0.{build}
-build_cloud: lithium
-max_jobs: 2
-image: Visual Studio 2019
+
+# Windows
+matrix: only: - build_cloud: lithium
+max_jobs: 1
 configuration: Release
 environment:
   matrix:
@@ -32,7 +33,14 @@ install:
 build_script:
   - cmake --build . --target install --config Release
 test_script:
-  - if "%DO_TEST%" == "TRUE" (ctest --output-on-failure -j 4 -C Release)
+  - if "%DO_TEST%" == "TRUE" (ctest --output-on-failure -j 8 -C Release)
 artifacts:
 - path: build\install\**\*
   name: SLEEFWindowsx64
+
+# Ubuntu x86_64
+matrix: only: - build_cloud: ubuntux64
+install:
+  - hostname
+  - pwd
+  - echo $PATH
