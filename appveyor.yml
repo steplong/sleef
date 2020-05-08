@@ -1,9 +1,11 @@
 version: 1.0.{build}
 
+for:
+
 # Windows
-matrix:
-  only:
-    - build_cloud: lithium
+- matrix:
+    only:
+      - build_cloud: lithium
 max_jobs: 1
 configuration: Release
 environment:
@@ -41,9 +43,9 @@ artifacts:
   name: SLEEFWindowsx64
 
 # Ubuntu x86_64
-matrix:
-  only:
-    - build_cloud: ubuntux64
+- matrix:
+    only:
+      - build_cloud: ubuntux64
 install:
   - hostname
   - pwd
