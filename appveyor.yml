@@ -1,11 +1,11 @@
-version: {build}
-
-max_jobs: 1
-
+version: 1.0.{build}
+clone_depth: 1
 environment:
   matrix:
-  - job_name Ubuntu_x86_64
-  - job_name VS2019
+  - appveyor_build_worker_cloud: lithium
+    image: Visual Studio 2019
+  - appveyor_build_worker_cloud: ubuntux64
+    image: Ubuntu
 
 for:
 
@@ -13,20 +13,15 @@ for:
 -
 matrix:
   only:
-    - job_name Ubuntu_x86_64
-build_cloud: ubuntux64
+    - image: Ubuntu
 init:
   - hostname
-build_script:
-  - echo Ubuntu
+
 
 # Windows
 -
 matrix:
   only:
-    - job_name VS2019
-build_cloud: lithium
+    - image: Visual Studio 2019
 init:
   - hostname
-build_script:
-  - echo VS2019
